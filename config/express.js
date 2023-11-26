@@ -1,22 +1,35 @@
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
+const sessionStore = require("../src/middleware/storeCookies");
+const cors = require("cors");
+const { SESSION_KEY } = require("./config");
+require("../src/middleware/passportLocal");
 
 module.exports = (app) => {
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+      credentials: true,
+    })
+  );
+
+  app.use(bodyParser.json({ limit: "50mb" }));
+  app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
   app.use(
     session({
-      secret: "secret",
+      secret: SESSION_KEY,
       resave: true,
       saveUninitialized: true,
       cookie: {
         httponly: false,
         secure: false,
-        sameSite: "none",
+        sameSite: "lax",
         expires: 7 * 24 * 3600 * 1000,
       },
+      store: sessionStore,
     })
   );
 

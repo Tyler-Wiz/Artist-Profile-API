@@ -7,4 +7,5 @@ module.exports = {
     PG_PASSWORD: process.env.PG_PASSWORD,
     PG_PORT: process.env.PG_PORT,
   },
+  SESSION_KEY: process.env.SESSION_KEY,
 };

@@ -14,8 +14,8 @@ passport.deserializeUser(async (id, done) => {
     const user = await UserModel.findUnique(id);
     if (!user) throw new Error("User not found");
     done(null, user);
-  } catch (err) {
-    done(err, null);
+  } catch (error) {
+    done(error, null);
   }
 });
 

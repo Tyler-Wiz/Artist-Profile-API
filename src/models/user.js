@@ -1,11 +1,11 @@
 const db = require("../../config/index");
 
 class UserModel {
-  async createUser(email, password) {
+  static async createUser(email, password, is_admin) {
     try {
       // SQL Statement
-      const statement = `INSERT INTO users(email, password) VALUES($1,$2) RETURNING*`;
-      const values = [email, password];
+      const statement = `INSERT INTO users(email, password,is_admin) VALUES($1,$2, $3) RETURNING*`;
+      const values = [email, password, is_admin];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
         return result.rows[0];
@@ -15,7 +15,7 @@ class UserModel {
       throw new Error(error);
     }
   }
-  async findUnique(id) {
+  static async findUnique(id) {
     try {
       //SQL Statement
       const statement = `SELECT * FROM users WHERE id = $1`;
@@ -29,7 +29,7 @@ class UserModel {
       throw new Error(error);
     }
   }
-  async findUserByEmail(email) {
+  static async findUserByEmail(email) {
     try {
       //Sql Statement
       const statement = `SELECT * FROM users WHERE email = $1`;
@@ -45,4 +45,4 @@ class UserModel {
   }
 }
 
-module.exports = new UserModel();
+module.exports = UserModel;

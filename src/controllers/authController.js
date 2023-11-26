@@ -8,14 +8,14 @@ exports.create = async (req, res, next) => {
     // Validate the userInput
     const data = await validateAuthInput(req.body);
     // destructure req body
-    const { email, password } = data;
+    const { email, password, is_admin } = data;
     // Check if user already exists
     const user = await UserModel.findUserByEmail(email);
-    if (user) throw CreateError(400, `User With Email ${email} already exists`);
+    if (user) throw CreateError(400, `User With Email already exists`);
     // Hash password with bcrypt password
     const hashedPassword = await passwordHash(password, 10);
     //Create a new user
-    const newUser = await UserModel.createUser(email, hashedPassword);
+    const newUser = await UserModel.createUser(email, hashedPassword, is_admin);
     //Send the new user
     res.send(newUser);
   } catch (error) {

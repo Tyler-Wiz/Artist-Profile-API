@@ -1,10 +1,15 @@
 const { Pool } = require("pg");
-const DB = require("./config");
 
-const pool = new Pool({
+const db = new Pool({
   connectionString: process.env.DB_CONNECT,
 });
 
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
+db.connect((err) => {
+  if (err) {
+    console.error("connection error", err.stack);
+  } else {
+    console.log("Successfully connected to postgres database!");
+  }
+});
+
+module.exports = db;

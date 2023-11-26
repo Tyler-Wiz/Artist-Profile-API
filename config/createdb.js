@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-const { DB } = require("../config");
+const { DB } = require("./config");
 
 (async () => {
   const createDatabaseTables = [
@@ -7,7 +7,8 @@ const { DB } = require("../config");
         id             SERIAL PRIMARY KEY,
         email          varchar(255) NOT NULL,
         password       varchar(255) NOT NULL,
-         created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        is_admin       boolean NOT NULL,
+        created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`,
     `CREATE TABLE IF NOT EXISTS artists(
         id             SERIAL PRIMARY KEY,
@@ -16,39 +17,36 @@ const { DB } = require("../config");
         hometown       varchar(255) NOT NULL,
         label          varchar(255) NOT NULL,
         featured_image varchar(255) NOT NULL,
-         created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        url            varchar(255) NOT NULL,
+        bio            TEXT NOT NULL,
+        twitter        varchar(255),
+        instagram      varchar(255),
+        created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );`,
-    `CREATE TABLE IF NOT EXISTS socials(
-        id SERIAL PRIMARY KEY,
-        artist_id  SERIAL NOT NULL,
-        twitter varchar(255) NOT NULL,
-        instagram varchar(255) NOT NULL,
-        tikTok varchar(255) NOT NULL,
-        created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (artist_id) REFERENCES artists(id) 
-    );`,
-    `CREATE TABLE IF NOT EXISTS artist_bio(
-        id SERIAL PRIMARY KEY,
-        artist_id SERIAL NOT NULL,
-        bio TEXT NOT NULL,
-        created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (artist_id) REFERENCES artists(id) 
-    );`,
     `CREATE TABLE IF NOT EXISTS songs (
-        id SERIAL PRIMARY KEY,
-        artist_id SERIAL NOT NULL,
-        song_image TEXT NOT NULL,
-        song_title TEXT NOT NULL,
-       created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        id             SERIAL   PRIMARY KEY,
+        artist_id      INTEGER NOT NULL,
+        song_image     TEXT NOT NULL,
+        song_title     TEXT NOT NULL,
+        url            varchar(255) NOT NULL,
+        external_url   varchar(255) NOT NULL,
+        created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (artist_id) REFERENCES artists(id) 
     );`,
     `CREATE TABLE IF NOT EXISTS albums(
-        id SERIAL PRIMARY KEY,
-        artist_id SERIAL NOT NULL,
-        album_image TEXT NOT NULL,
-       album_title TEXT NOT NULL,
-       created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        id            SERIAL PRIMARY KEY,
+        artist_id     INTEGER NOT NULL,
+        album_image   TEXT NOT NULL,
+        album_title   TEXT NOT NULL,
+        url           varchar(255) NOT NULL,
+        external_url   varchar(255) NOT NULL,
+        created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (artist_id) REFERENCES artists(id) 
+    );`,
+    `CREATE TABLE IF NOT EXISTS session (
+        sid           VARCHAR(255) PRIMARY KEY,
+        sess          JSON,
+        expire        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`,
   ];
 
