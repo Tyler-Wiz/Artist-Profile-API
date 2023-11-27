@@ -1,0 +1,439 @@
+openapi: 3.0.0
+info:
+  title: Artists Profile API
+  description: Artist Profile API by Tyler for tooXclusive
+  contact:
+   name: Tyler
+   url: https//tooxclusive.com
+  version: 1.0.0
+servers: 
+  - url: http://localhost:4000/
+paths: 
+  /api/auth/login:
+    post:
+       summary: Authenticate user
+       description: Authenticate a user using email and password.
+       requestBody:
+        content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     email:
+                      type: string
+                      example: example@gmail.com
+                     password: 
+                      type: string
+                      example: 123456
+       responses:
+        200:
+          description: Successful authentication
+        401:
+          description: Unauthorized - Invalid credentials
+  /api/auth/register:
+    post: 
+      summary: Register user
+      description: Register a user using email and password.
+      requestBody:
+        content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     email:
+                      type: string
+                      example: example@gmail.com
+                     password: 
+                      type: string
+                      example: 123456
+                     is_admin: 
+                      type: integer
+                      example: 1
+      responses:
+        201:
+          description: Successful Registered user
+        401:
+          description: Unauthorized - Invalid credentials          
+  /api/artist/upload/:
+    post: 
+      summary: Upload new artist
+      description: Upload new artist details to the database
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                     artist_name: 
+                       type: string
+                       example: wizkid
+                     real_name: 
+                       type: string
+                       example: Ayo
+                     hometown: 
+                       type: string
+                       example: Lagos
+                     label: 
+                       type: string
+                       example: EME
+                     featured_image: 
+                       type: string
+                       example: image.jpg
+                     url: 
+                       type: string
+                       example: wizkid  
+                     bio: 
+                       type: string
+                       example: wizkid    
+                     twitter: 
+                       type: string
+                       example: wizkid    
+                     instagram: 
+                       type: string
+                       example: wizkid    
+      responses:
+        201:
+          description: Successful Create Artist 
+        401:
+          description: Unauthorized - Invalid credentials                                      
+  /api/artist/{id}:
+    get: 
+      summary: Single Artist Detaiils
+      description: Get An Artist by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: Success Response for Artist Details
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                items: 
+                    properties: 
+                     id:
+                       type: integer
+                       example: 1
+                     artist_name: 
+                       type: string
+                       example: wizkid
+                     real_name: 
+                       type: string
+                       example: Ayo
+                     hometown: 
+                       type: string
+                       example: Lagos
+                     label: 
+                       type: string
+                       example: EME
+                     featured_image: 
+                       type: string
+                       example: image.jpg
+                     url: 
+                       type: string
+                       example: wizkid  
+                     bio: 
+                       type: string
+                       example: wizkid    
+                     twitter: 
+                       type: string
+                       example: wizkid    
+                     instagram: 
+                       type: string
+                       example: wizkid    
+                     created_at: 
+                       type: integer
+                       example: wizkid   
+        401:
+          description: Unauthorized            
+    delete: 
+      summary: Deleting Single Artist Detaiils
+      description: Delete An Artist by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+         200:
+          description: Successful Deleted
+         401:
+          description: Unauthorized
+    put: 
+      summary: Edit Artist Detaiils
+      description: Edit An Artist by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: Success Response for Artist Details
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                items: 
+                    properties: 
+                     id:
+                       type: integer
+                       example: 1
+                     artist_name: 
+                       type: string
+                       example: wizkid
+                     real_name: 
+                       type: string
+                       example: Ayo
+                     hometown: 
+                       type: string
+                       example: Lagos
+                     label: 
+                       type: string
+                       example: EME
+                     featured_image: 
+                       type: string
+                       example: image.jpg
+                     url: 
+                       type: string
+                       example: wizkid  
+                     bio: 
+                       type: string
+                       example: wizkid    
+                     twitter: 
+                       type: string
+                       example: wizkid    
+                     instagram: 
+                       type: string
+                       example: wizkid    
+                     created_at: 
+                       type: integer
+                       example: wizkid  
+  /api/songs/upload/:
+    post: 
+      summary: Upload a single song to artist By ID
+      description: Song upload
+      requestBody:
+        content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     artist_id: 
+                       type: integer
+                       example: wizkid
+                     song_image: 
+                       type: string
+                       example: Ayo
+                     song_title: 
+                       type: string
+                       example: Lagos
+                     url: 
+                       type: string
+                       example: EME
+                     external_url: 
+                       type: string
+                       example: EME 
+      responses: 
+         200: 
+          description: Song uploaded succesfully
+         401:
+          description: Unauthorized
+  /api/songs/{id}: 
+    get: 
+      summary: Single Song Detaiils
+      description: Get A Song by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: Success Response for Song Details
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                items: 
+                    properties: 
+                     id:
+                       type: integer
+                       example: 1
+                     artist_id: 
+                       type: integer
+                       example: wizkid
+                     song_image: 
+                       type: string
+                       example: Ayo
+                     song_title: 
+                       type: string
+                       example: Lagos
+                     url: 
+                       type: string
+                       example: EME
+                     external_url: 
+                       type: string
+                       example: EME
+                     created_at: 
+                       type: integer
+                       example: 92789217  
+                       
+        401:
+          description: Unauthorized            
+    delete: 
+      summary: Deleting Single Song Detaiils
+      description: Delete An Song by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+         200:
+          description: Successful Deleted
+         401:
+          description: Unauthorized
+    put: 
+      summary: Edit Artist Detaiils
+      description: Edit An Artist by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      requestBody: 
+       content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     artist_id: 
+                       type: integer
+                       example: wizkid
+                     song_image: 
+                       type: string
+                       example: Ayo
+                     song_title: 
+                       type: string
+                       example: Lagos
+                     url: 
+                       type: string
+                       example: EME
+                     external_url: 
+                       type: string
+                       example: EME
+      responses:
+        200: 
+          description: Success Response for Artist Details
+  /api/albums/upload/:
+    post: 
+      summary: Album Upload
+      description: Upload single album to database
+      requestBody: 
+        content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     artist_id: 
+                       type: integer
+                       example: wizkid
+                     album_image: 
+                       type: string
+                       example: Ayo
+                     album_title:   
+                       type: string
+                       example: Lagos
+                     url: 
+                       type: string
+                       example: EME
+                     external_url: 
+                       type: string
+                       example: EME 
+      responses: 
+        200:
+          description: Album uploaded successfully
+        401: 
+          description: Unauthorized
+  /api/albums/{id}/:   
+     get: 
+      summary: Single Album Detaiils
+      description: Get An Album by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: Successful
+        401:
+          description: Unauthorized                  
+     delete:
+      summary: Single Album Detaiils
+      description: Delete An Album by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: Successful
+        401:
+          description: Unauthorized      
+     put:
+      summary: Edit Album Detaiils
+      description: Edit An Album by ID
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: string
+      requestBody: 
+       content:
+           application/json:
+            schema: 
+               type: object
+               properties:
+                     artist_id: 
+                       type: integer
+                       example: wizkid
+                     album_image: 
+                       type: string
+                       example: Ayo
+                     album_title: 
+                       type: string
+                       example: Lagos
+                     url: 
+                       type: string
+                       example: EME
+                     external_url: 
+                       type: string
+                       example: EME
+      responses:
+        200: 
+          description: Success Response for Artist Details
+        401:
+          description: Unauthorized Access
+  /api/albums/:
+    get: 
+      summary: Get all Albums from database
+      responses:
+         200: 
+           description: Successful
+         401: 
+           description: Unauthorized Access

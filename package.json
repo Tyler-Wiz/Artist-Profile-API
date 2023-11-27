@@ -22,9 +22,11 @@
     "express-session": "^1.17.3",
     "http-errors": "^2.0.0",
     "joi": "^17.11.0",
+    "js-yaml": "^4.1.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
