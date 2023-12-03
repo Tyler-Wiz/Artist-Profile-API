@@ -7,15 +7,25 @@ const SongsModel = require("../models/songs");
 const { trimAndHyphenate } = require("../utils/createdUrl");
 
 exports.create = async (req, res, next) => {
+  const song_image = req.Location;
+  const { artist_id, external_url, song_title, released } = req.body;
+  const data = {
+    artist_id,
+    external_url,
+    song_title,
+    song_image,
+    released,
+  };
   try {
     // Validate Destructure the Request Body
-    const validate = await validateSongInput(req.body);
+    const validate = await validateSongInput(data);
     if (validate) throw CreateError(404, `${validate}`);
     // Generate Url From Song title
     const url = trimAndHyphenate(req.body.song_title);
+    console.log(song_image);
     let song = await SongsModel.findUniqueSong(url);
     if (song) throw CreateError(404, "Song already exists");
-    song = await SongsModel.createSong({ ...req.body, url });
+    song = await SongsModel.createSong({ ...data, url });
     res.status(201).send(song);
   } catch (error) {
     next(error);
@@ -26,11 +36,16 @@ exports.searchSong = async (req, res, next) => {
   const search = req.query.song;
   try {
     const allSongs = await SongsModel.findMany();
-    const filteredSongs = allSongs.filter((song) =>
-      song.song_title.toLowerCase().includes(search.toLowerCase())
-    );
-    if (filteredSongs.length === 0) throw CreateError(404, "Song not found");
-    res.status(200).send(filteredSongs);
+    if (search) {
+      if (allSongs === null) throw CreateError(404, "Song not found");
+      const filteredSongs = allSongs.filter((song) =>
+        song.song_title.toLowerCase().includes(search.toLowerCase())
+      );
+      if (filteredSongs.length === 0) throw CreateError(404, "Song not found");
+      res.status(200).send(filteredSongs);
+    } else {
+      res.status(200).send(allSongs);
+    }
   } catch (error) {
     next(error);
   }
@@ -74,6 +89,7 @@ exports.updateSong = async (req, res, next) => {
 
 exports.deleteSong = async (req, res, next) => {
   const url = req.params.id;
+  console.log(url);
   try {
     let song = await SongsModel.findUniqueSong(url);
     if (!song) throw CreateError(404, "Song Doesn't exists");

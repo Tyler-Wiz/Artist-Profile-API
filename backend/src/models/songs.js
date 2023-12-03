@@ -4,14 +4,15 @@ class SongsModel {
   static async createSong(data) {
     try {
       //SQL statement
-      const statement = `INSERT INTO songs (artist_id, song_image, song_title,external_url,  url) 
-                         VALUES($1, $2, $3, $4, $5) RETURNING *`;
+      const statement = `INSERT INTO songs (artist_id, song_image, song_title,external_url, url, released) 
+                         VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
       const values = [
         data.artist_id,
         data.song_image,
         data.song_title,
         data.external_url,
         data.url,
+        data.released,
       ];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
@@ -44,7 +45,10 @@ class SongsModel {
   static async findUniqueSong(url) {
     try {
       // SQL statement
-      const statement = `SELECT * FROM songs WHERE url = $1`;
+      const statement = `SELECT s.song_title, s.song_image, s.url, s.released,s.external_url, a.artist_name
+                        FROM songs s
+                        JOIN artists a ON s.artist_id = a.id
+                        WHERE s.url = $1`;
       const values = [url];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
@@ -58,12 +62,13 @@ class SongsModel {
   static async updateSong(data) {
     try {
       // SQL statement
-      const statement = `UPDATE songs SET song_image = $1, song_title = $2, external_url =$3 WHERE url = $4`;
+      const statement = `UPDATE songs SET song_image = $1, song_title = $2, external_url = $3, released = $5 WHERE url = $4`;
       const values = [
         data.song_image,
         data.song_title,
         data.external_url,
         data.url,
+        data.released,
       ];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
@@ -91,7 +96,7 @@ class SongsModel {
   static async findMany() {
     try {
       //SQL statement
-      const statement = `SELECT s.song_title, s.song_image, s.url, a.artist_name
+      const statement = `SELECT s.song_title, s.song_image, s.url, s.released, a.artist_name, s.created_at
                         FROM songs s
                         JOIN artists a ON s.artist_id = a.id `;
       const values = [];

@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 const {
   create,
   getAllSongsById,
@@ -8,19 +9,19 @@ const {
   searchSong,
 } = require("../controllers/songsController");
 const { protectedAdminRoutes } = require("../middleware/protectedRoutes");
-const router = express.Router();
+const { uploadImage } = require("../services/imageUpload");
 
 // Open Routes
-router.post("/search", searchSong);
+router.get("/", searchSong);
 router.get("/:id", getSingleSong);
 router.get("/all/:id", getAllSongsById);
+router.delete("/:id", deleteSong);
 
 // Protected route Middleware
 router.use(protectedAdminRoutes);
 
 // Protected Upload Route //
-router.post("/upload", create);
-router.delete("/:id", deleteSong);
+router.post("/upload", uploadImage, create);
 router.put("/:id", updateSong);
 
 module.exports = router;

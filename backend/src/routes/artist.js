@@ -8,16 +8,18 @@ const {
   getAllArtist,
 } = require("../controllers/artistController");
 const { protectedAdminRoutes } = require("../middleware/protectedRoutes");
+const { uploadImage } = require("../services/imageUpload");
 
 // Open Routes
 router.get("/:id", getUniqueArtist);
 router.get("/", getAllArtist);
+
 // Protected route Middleware
 router.use(protectedAdminRoutes);
 
 // Protected Upload Route //
-router.post("/upload", create);
+router.post("/upload", uploadImage, create);
 router.delete("/:id", deleteArtist);
-router.put("/:id", updateArtist);
+router.put("/:id", uploadImage, updateArtist);
 
 module.exports = router;

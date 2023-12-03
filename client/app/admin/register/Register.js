@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import AuthForm from "../components/auth/AuthForm";
-import { registerUser } from "../redux/features/auth-slice";
+import AuthForm from "../auth/AuthForm";
+import { registerUser } from "../../redux/features/auth-slice";
 
 const Register = () => {
   const title = "Register";

@@ -13,6 +13,7 @@ const { DB } = require("./config");
     `CREATE TABLE IF NOT EXISTS artists(
         id             SERIAL PRIMARY KEY,
         artist_name    varchar(255) NOT NULL,
+        age            varchar(255) NOT NULL,
         real_name      varchar(255) NOT NULL,
         hometown       varchar(255) NOT NULL,
         label          varchar(255) NOT NULL,
@@ -30,8 +31,9 @@ const { DB } = require("./config");
         song_title     TEXT NOT NULL,
         url            varchar(255) NOT NULL,
         external_url   varchar(255) NOT NULL,
+        Released       varchar(255) NOT NULL,
         created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (artist_id) REFERENCES artists(id) 
+        FOREIGN KEY    (artist_id) REFERENCES artists(id) 
     );`,
     `CREATE TABLE IF NOT EXISTS albums(
         id            SERIAL PRIMARY KEY,

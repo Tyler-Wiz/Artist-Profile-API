@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { BASE_URL } from "@/app/api/server-url";
+import { BASE_URL } from "../../api/server-url";
 
 const cookie = new Cookies();
 
@@ -23,7 +23,6 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (user, { rejectWithValue }) => {
-    console.log(user);
     try {
       const token = await axios.post(`${BASE_URL}/register`, user, {
         withCredentials: true,

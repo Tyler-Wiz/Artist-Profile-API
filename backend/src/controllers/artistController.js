@@ -1,16 +1,39 @@
 const CreateError = require("http-errors");
 const ArtistModel = require("../models/artist");
+const SongsModel = require("../models/songs");
 const { validateArtistInput } = require("../utils/validation");
+const { trimAndHyphenate } = require("../utils/createdUrl");
 
 exports.create = async (req, res, next) => {
-  const data = req.body;
-  const { url } = data;
+  const {
+    artist_name,
+    real_name,
+    label,
+    instagram,
+    twitter,
+    hometown,
+    bio,
+    age,
+  } = req.body;
+  const featured_image = req.Location;
+  const data = {
+    featured_image,
+    artist_name,
+    real_name,
+    label,
+    instagram,
+    twitter,
+    hometown,
+    bio,
+    age,
+  };
   try {
+    const url = trimAndHyphenate(artist_name);
     const validate = await validateArtistInput(data);
-    if (validate) throw CreateError(401, "Invalid Input");
+    if (validate) throw CreateError(404, `${validate}`);
     const artist = await ArtistModel.findUnique(url);
     if (artist) throw CreateError(401, "Artist Already Exists");
-    const newArtist = await ArtistModel.createArtist(data);
+    const newArtist = await ArtistModel.createArtist({ ...data, url });
     res.status(201).send(newArtist);
   } catch (error) {
     next(error);
@@ -46,15 +69,59 @@ exports.getUniqueArtist = async (req, res, next) => {
 };
 
 exports.updateArtist = async (req, res, next) => {
+  const {
+    artist_name,
+    real_name,
+    label,
+    instagram,
+    twitter,
+    hometown,
+    bio,
+    featured_image,
+    age,
+  } = req.body;
   try {
-    const data = req.body;
     const url = req.params.id;
-    const validate = await validateArtistInput(data);
-    if (validate) throw CreateError(401, "Invalid Input");
-    const artist = await ArtistModel.findUnique(url);
-    if (!artist) throw CreateError(404, "Artist Doesn't Exists");
-    await ArtistModel.updateArtist(data);
-    res.send(`Artist: ${artist.artist_name} updated successfully`);
+    if (req.body.image) {
+      const featured_image = req.Location;
+      const data = {
+        featured_image,
+        artist_name,
+        real_name,
+        label,
+        instagram,
+        twitter,
+        hometown,
+        bio,
+        age,
+      };
+      const validate = await validateArtistInput(data);
+      if (validate) throw CreateError(404, `${validate}`);
+      const artist = await ArtistModel.findUnique(url);
+      if (!artist) throw CreateError(404, "Artist Doesn't Exists");
+      await ArtistModel.updateArtist({ ...data, url });
+      res
+        .status(201)
+        .send(`Artist: ${artist.artist_name} updated successfully`);
+    } else {
+      const data = {
+        featured_image,
+        artist_name,
+        real_name,
+        label,
+        instagram,
+        twitter,
+        hometown,
+        bio,
+        age,
+      };
+      const validate = await validateArtistInput(data);
+      if (validate) throw CreateError(404, `${validate}`);
+      const artist = await ArtistModel.findUnique(url);
+      if (!artist) throw CreateError(404, "Artist Doesn't Exists");
+      await ArtistModel.updateArtist({ ...data, url });
+      res.send(`Artist: ${artist.artist_name} updated successfully`);
+    }
   } catch (error) {
     next(error);
   }
@@ -65,6 +132,9 @@ exports.deleteArtist = async (req, res, next) => {
     const url = req.params.id;
     const artist = await ArtistModel.findUnique(url);
     if (!artist) throw CreateError(404, "Artist Doesn't Exists");
+    const artistSongs = await SongsModel.findSongsByArtist(artist.id);
+    if (artistSongs)
+      throw CreateError(404, "Artist With Songs Can't Be Deleted");
     await ArtistModel.deleteArtist(url);
     res.status(200).send(`Artist: ${artist.artist_name} deleted successfully`);
   } catch (error) {

@@ -39,33 +39,35 @@ exports.validateArtistInput = async (data) => {
     hometown: joi.string().required(),
     label: joi.string().required(),
     featured_image: joi.string().required(),
-    url: joi.string().required(),
     bio: joi.string().required(),
+    age: joi.string().required(),
     twitter: joi.string(),
     instagram: joi.string(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
-  return error;
+  if (error) return trimErrorMessage(error.details[0].message).toUpperCase();
 };
 
 exports.validateSongInput = async (data) => {
   const schema = joi.object().keys({
-    artist_id: joi.number().min(2).required(),
+    artist_id: joi.number().min(1).required(),
+    released: joi.number().min(4).required(),
     song_image: joi.string().min(2).required(),
     song_title: joi.string().min(2).required(),
     external_url: joi.string().min(2).required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
-  if (error) return trimErrorMessage(error.details[0].message);
+  if (error) return trimErrorMessage(error.details[0].message).toUpperCase();
 };
 
 exports.validateSongUpdate = async (data) => {
   const schema = joi.object().keys({
     song_image: joi.string().required(),
     song_title: joi.string().required(),
-    external_url: joi.string().min(2).required(),
+    released: joi.string().required(),
+    external_url: joi.string().required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);

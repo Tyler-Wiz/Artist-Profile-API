@@ -1,3 +1,52 @@
 {
-  "pages": {}
+  "pages": {
+    "/admin/artist/edit/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/artist/edit/[id]/page.css",
+      "static/chunks/app/admin/artist/edit/[id]/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/admin/artist/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/artist/page.css",
+      "static/chunks/app/admin/artist/page.js"
+    ],
+    "/admin/artist/post-new/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/artist/post-new/page.css",
+      "static/chunks/app/admin/artist/post-new/page.js"
+    ],
+    "/admin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/page.css",
+      "static/chunks/app/admin/page.js"
+    ],
+    "/admin/song/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/song/page.css",
+      "static/chunks/app/admin/song/page.js"
+    ],
+    "/admin/song/post-new/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/song/post-new/page.css",
+      "static/chunks/app/admin/song/post-new/page.js"
+    ],
+    "/admin/song/edit/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/admin/song/edit/[id]/page.css",
+      "static/chunks/app/admin/song/edit/[id]/page.js"
+    ]
+  }
 }

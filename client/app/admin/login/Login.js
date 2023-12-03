@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useLayoutEffect } from "react";
-import AuthForm from "../components/auth/AuthForm";
-import { loginUser } from "../redux/features/auth-slice";
+import AuthForm from "../auth/AuthForm";
+import { loginUser } from "../../redux/features/auth-slice";
 import { useSelector } from "react-redux";
 import { redirect } from "next/navigation";
-import withLogin from "../components/auth/withLogin";
 
 const Login = () => {
   const { token } = useSelector((state) => state.auth);
 
   useLayoutEffect(() => {
     if (token) {
-      redirect("/");
+      redirect("/admin");
     }
   }, [token]);
 
