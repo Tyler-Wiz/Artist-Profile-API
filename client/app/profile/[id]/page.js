@@ -17,6 +17,16 @@ const getSongsByArtist = async (id) => {
   return data;
 };
 
+export async function generateMetadata({ params }) {
+  // read route params
+  const id = params.id;
+  // fetch data
+  const artist = await getArtist(id);
+  return {
+    title: artist.artist_name,
+  };
+}
+
 const page = async ({ params }) => {
   const artistId = params.id;
   const artist = await getArtist(artistId);
