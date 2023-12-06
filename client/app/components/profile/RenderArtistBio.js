@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { FaInstagram, FaTwitter } from "react-icons/fa";
-import { calculateAge } from "../helpers/calculateAge";
+import { calculateAge } from "../../helpers/calculateAge";
 
 const RenderArtistBio = ({ artist }) => {
   const age = calculateAge(artist.age);

@@ -63,8 +63,8 @@ class AlbumModel {
   static async findManyByArtistId(artist_id) {
     try {
       // SQL statement
-      const statement = `SELECT a.album_image, a.album_title,a.external_url, 
-                         a.artist_id, ar.artist_name, a.url
+      const statement = `SELECT a.album_image as image, a.album_title as title, a.external_url, 
+                         a.artist_id, ar.artist_name as artist, a.released, a.url
                         FROM albums a
                         JOIN artists ar ON a.artist_id = ar.id
                         WHERE a.artist_id = $1`;

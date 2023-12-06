@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "../components/Nav";
-import SearchByLetters from "../components/SearchByLetters";
+import Nav from "../components/navbar/Nav";
+import SearchByLetters from "../components/home/SearchByLetters";
 
 const getAllArtists = async () => {
   const res = await fetch(`http://localhost:4000/api/artist/`, {

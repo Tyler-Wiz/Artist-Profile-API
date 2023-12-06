@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import RenderArtistList from "../components/RenderArtistList";
+import RenderArtistList from "./RenderArtistList";
 
 const SearchByLetters = ({ data }) => {
   // Generate an array containing A to Z

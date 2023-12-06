@@ -147,6 +147,28 @@ button.is_active {
   padding: 2px 3px;
   border-radius: 2px;
 }
+.sticky-banner {
+  position: sticky;
+  top: 0;
+  border: 10px solid rgba(197, 197, 197, 0.2);
+  width: 300px;
+  height: 600px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #999999;
+}
+
+.list-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid gray;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
