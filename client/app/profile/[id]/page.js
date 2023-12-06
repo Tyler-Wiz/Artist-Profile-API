@@ -1,5 +1,5 @@
 import React from "react";
-import RenderArtistInfo from "../../website/components/RenderArtistInfo";
+import RenderArtistInfo from "../../components/RenderArtistInfo";
 
 const getArtist = async (id) => {
   const res = await fetch(`http://localhost:4000/api/artist/${id}`, {
