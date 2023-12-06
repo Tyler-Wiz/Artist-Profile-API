@@ -8,6 +8,30 @@
   .artist-bio p {
     @apply pb-3;
   }
+  .artist-profile {
+    @apply flex bg-black text-white justify-between py-10 items-center max-w-screen-xl mx-auto;
+  }
+  .artist_details {
+    @apply flex flex-col gap-3;
+  }
+  .artist_details div {
+    @apply flex items-center gap-6 justify-between;
+  }
+  .artist_details p {
+    @apply text-xl;
+  }
+  .artist_details h4 {
+    @apply text-2xl;
+  }
+  .artist-featured--image {
+    @apply relative w-1/2 h-[430px];
+  }
+  .artist_details--social {
+    @apply flex gap-3 my-5;
+  }
+  .artist_details--social a {
+    @apply hover:text-red-700;
+  }
 }
 
 @layer base {

@@ -2,12 +2,14 @@ import Image from "next/image";
 import React from "react";
 import Nav from "./Nav";
 import parse from "html-react-parser";
+import RenderArtistBio from "./RenderArtistBio.js";
 
 const RenderArtistInfo = ({ songs, artist }) => {
   return (
     <div>
       <Nav />
-      <div className="flex justify-between p-10">
+      <RenderArtistBio artist={artist} />
+      <div className="flex justify-between py-10 max-w-screen-xl mx-auto">
         <section className="w-2/3">
           <h2>Artist Bio</h2>
           <div className="artist-bio">{parse(artist.bio)}</div>
@@ -16,8 +18,7 @@ const RenderArtistInfo = ({ songs, artist }) => {
               {Array.isArray(songs) && (
                 <ul>
                   <h2>Top Songs</h2>
-                  <hr />
-                  {songs?.map((song, i) => (
+                  {songs.map((song, i) => (
                     <li key={i} className="flex gap-3 w-70 items-center">
                       <div className="relative h-36 w-36 border-1 my-2">
                         <Image

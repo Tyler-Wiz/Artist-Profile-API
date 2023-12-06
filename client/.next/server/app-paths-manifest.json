@@ -1,8 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
   "/admin/artist/page": "app/admin/artist/page.js",
-  "/profile/[id]/page": "app/profile/[id]/page.js",
   "/admin/song/post-new/page": "app/admin/song/post-new/page.js",
-  "/admin/song/page": "app/admin/song/page.js"
+  "/admin/song/page": "app/admin/song/page.js",
+  "/profile/[id]/page": "app/profile/[id]/page.js"
 }
