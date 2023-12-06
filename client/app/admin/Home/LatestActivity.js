@@ -23,11 +23,11 @@ const LatestActivity = ({ songs }) => {
           {songs.map((item, i) => (
             <tr key={i}>
               <td className="py-2 whitespace-nowrap">{i + 1}</td>
-              <td className="py-2 whitespace-nowrap">{item.song_title}</td>
+              <td className="py-2 whitespace-nowrap">{item.title}</td>
               <td className="p-4 whitespace-nowrap">
                 {item.created_at.split("T")[0]}
               </td>
-              <td className="py-2 whitespace-nowrap">{item.artist_name}</td>
+              <td className="py-2 whitespace-nowrap">{item.artist}</td>
             </tr>
           ))}
         </tbody>

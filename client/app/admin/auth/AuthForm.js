@@ -16,6 +16,7 @@ const AuthForm = ({ dispatchAction, title }) => {
     password: "",
   });
   const [isAdmin, setIsAdmin] = useState(false);
+  const [username, setUsername] = useState("");
 
   // Form Error States
   const [errors, setErrors] = useState({});
@@ -68,19 +69,21 @@ const AuthForm = ({ dispatchAction, title }) => {
           />
         </label>
         {title === "Register" ? (
-          <div className="pb-4 flex items-center">
-            <label htmlFor="checkbox" className="label mr-3">
-              Admin User ?
-            </label>
-            <input
-              type="checkbox"
-              name="agreed"
-              id="checkbox"
-              checked={isAdmin}
-              onChange={handleCheck}
-              className="form-checkbox h-5 w-5"
-            />
-          </div>
+          <>
+            <div className="pb-4 flex items-center">
+              <label htmlFor="checkbox" className="label mr-3">
+                Admin User ?
+              </label>
+              <input
+                type="checkbox"
+                name="agreed"
+                id="checkbox"
+                checked={isAdmin}
+                onChange={handleCheck}
+                className="form-checkbox h-5 w-5"
+              />
+            </div>
+          </>
         ) : (
           ""
         )}

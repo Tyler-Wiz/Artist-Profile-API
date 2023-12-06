@@ -6,7 +6,6 @@ import UploadForm from "../components/ImageForm";
 import Input from "../components/Input";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { toast } from "react-toastify";
 
 const Post = ({ title }) => {
   const router = useRouter();
@@ -61,7 +60,6 @@ const Post = ({ title }) => {
           withCredentials: true,
         }
       );
-      toast("Artist Posted");
       if (res.status) {
         router.push("/admin/artist");
       }

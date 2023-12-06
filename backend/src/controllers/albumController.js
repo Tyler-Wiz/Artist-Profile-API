@@ -7,13 +7,22 @@ const {
 const { trimAndHyphenate } = require("../utils/createdUrl");
 
 exports.createAlbum = async (req, res, next) => {
+  const album_image = req.Location;
+  const { artist_id, external_url, album_title, released } = req.body;
+  const data = {
+    artist_id,
+    external_url,
+    album_title,
+    album_image,
+    released,
+  };
   try {
-    const validate = await validateAlbumInput(req.body);
+    const validate = await validateAlbumInput(data);
     if (validate) throw CreateError(404, `${validate}`);
-    const url = trimAndHyphenate(req.body.album_title);
+    const url = trimAndHyphenate(album_title);
     let album = await AlbumModel.findUniqueAlbum(url);
     if (album) throw CreateError(404, `Album ${req.body.album_title} exists`);
-    album = await AlbumModel.createAlbum({ ...req.body, url });
+    album = await AlbumModel.createAlbum({ ...data, url });
     res.status(201).send(album);
   } catch (error) {
     next(error);
@@ -75,6 +84,7 @@ exports.deleteAlbum = async (req, res, next) => {
 exports.updateAlbum = async (req, res, next) => {
   try {
     const url = req.params.id;
+    console.log(url);
     let album = await AlbumModel.findUniqueAlbum(url);
     if (!album) throw CreateError(404, `Album Doesn't exists`);
     const validate = await validateAlbumUpdate(req.body);

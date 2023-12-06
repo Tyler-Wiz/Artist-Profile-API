@@ -8,6 +8,7 @@ const {
   updateAlbum,
 } = require("../controllers/albumController");
 const { protectedAdminRoutes } = require("../middleware/protectedRoutes");
+const { uploadImage } = require("../services/imageUpload");
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get("/artist/:id", getArtistsAlbums);
 router.use(protectedAdminRoutes);
 
 // Protected Upload Route //
-router.post("/upload", createAlbum);
+router.post("/upload", uploadImage, createAlbum);
 router.delete("/:id", deleteAlbum);
 router.put("/:id", updateAlbum);
 

@@ -5,14 +5,15 @@ class AlbumModel {
   static async createAlbum(data) {
     try {
       //SQL statement
-      const statement = `INSERT INTO albums(artist_id, album_image, album_title,external_url,url) 
-                         VALUES($1, $2, $3, $4, $5) RETURNING *`;
+      const statement = `INSERT INTO albums(artist_id, album_image, album_title,external_url, url, released) 
+                         VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
       const values = [
         data.artist_id,
         data.album_image,
         data.album_title,
         data.external_url,
         data.url,
+        data.released,
       ];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
@@ -28,7 +29,7 @@ class AlbumModel {
     try {
       // SQL statement
       const statement = `SELECT a.album_image, a.album_title,a.external_url,
-                         a.artist_id, ar.artist_name, a.url
+                         a.artist_id, ar.artist_name, a.url, a.released
                         FROM albums a
                         JOIN artists ar ON a.artist_id = ar.id
                         WHERE a.url = $1`;
@@ -45,7 +46,10 @@ class AlbumModel {
   static async findMany() {
     try {
       // SQL statement
-      const statement = `SELECT * FROM albums`;
+      const statement = `SELECT al.url, al.album_title As title, al.released as "released date",
+                        a.artist_name as artist
+                        FROM albums al
+                        JOIN artists a ON a.id = al.artist_id`;
       const values = [];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
@@ -93,12 +97,13 @@ class AlbumModel {
     try {
       // SQL statement
       const statement = `UPDATE albums SET album_image = $1, 
-                         album_title = $2, external_url = $3 
-                         WHERE url = $4`;
+                         album_title = $2, external_url = $3, released = $4
+                         WHERE url = $5`;
       const values = [
         data.album_image,
         data.album_title,
         data.external_url,
+        data.released,
         data.url,
       ];
       const result = await db.query(statement, values);

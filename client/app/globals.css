@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .artist-bio {
+  }
+  .artist-bio p {
+    @apply pb-3;
+  }
+}
+
+@layer base {
+  h2 {
+    @apply text-3xl my-4;
+  }
+  p {
+    @apply text-lg;
+  }
+  hr {
+    @apply h-0.5 bg-red-600 block;
+  }
+}
+
 /* TitTap Editor Design */
 .ProseMirror {
   padding: 10px;

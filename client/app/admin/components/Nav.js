@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaHome,
   FaPlus,
@@ -8,17 +8,29 @@ import {
   FaUser,
   FaChevronUp,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 const data = [
-  { name: "Song", path: "/" },
-  { name: "Artist", path: "/" },
-  { name: "Album", path: "/" },
+  { name: "Song", path: "/admin/song/post-new" },
+  { name: "Artist", path: "/admin/artist/post-new" },
+  { name: "Album", path: "/admin/album/post-new" },
   { name: "Media", path: "/" },
   { name: "User", path: "/" },
 ];
 
 const Nav = () => {
   const [toggleMenu, setToggleMenu] = useState(true);
+  const [user, setUser] = useState("");
+
+  const { token } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (token) {
+      setUser(jwtDecode(token));
+    }
+  }, []);
+
   return (
     <nav className="flex justify-between items-center px-6 py-3 bg-secondary text-text-primary capitalize text-sm">
       <Link href="/" className="flex gap-3">
@@ -47,8 +59,9 @@ const Nav = () => {
           ))}
         </div>
       </div>
-      <Link href="/" className="flex gap-3">
-        <p>Howdy "user"</p>
+      <Link href="/" className="flex">
+        <p>Howdy,</p>
+        {user && <p className="mr-2">{user.email.split("@")[0]}</p>}
         <FaUser size={20} />
       </Link>
     </nav>

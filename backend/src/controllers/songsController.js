@@ -22,7 +22,6 @@ exports.create = async (req, res, next) => {
     if (validate) throw CreateError(404, `${validate}`);
     // Generate Url From Song title
     const url = trimAndHyphenate(req.body.song_title);
-    console.log(song_image);
     let song = await SongsModel.findUniqueSong(url);
     if (song) throw CreateError(404, "Song already exists");
     song = await SongsModel.createSong({ ...data, url });

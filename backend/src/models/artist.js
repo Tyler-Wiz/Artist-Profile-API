@@ -31,7 +31,10 @@ class ArtistModel {
   static async findMany() {
     try {
       // SQL statement
-      const statement = `SELECT id, created_at::date, artist_name, url, real_name, label FROM artists `;
+      const statement = `SELECT id, created_at::date as "published date", 
+                        created_at::date, artist_name as artist, url, 
+                        real_name as "real name", label, featured_image as image
+                        FROM artists `;
       const values = [];
       const result = await db.query(statement, values);
       if (result.rows?.length) {

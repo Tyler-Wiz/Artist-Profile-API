@@ -7,6 +7,7 @@ const { DB } = require("./config");
         id             SERIAL PRIMARY KEY,
         email          varchar(255) NOT NULL,
         password       varchar(255) NOT NULL,
+        username       varchar(255) NOT NULL,
         is_admin       boolean NOT NULL,
         created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`,
@@ -42,6 +43,7 @@ const { DB } = require("./config");
         album_title   TEXT NOT NULL,
         url           varchar(255) NOT NULL,
         external_url   varchar(255) NOT NULL,
+        released       varchar(255) NOT NULL,
         created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (artist_id) REFERENCES artists(id) 
     );`,

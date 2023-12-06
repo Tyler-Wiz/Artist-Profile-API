@@ -106,7 +106,7 @@ const Post = ({ title, artists }) => {
               className="ml-4 m-6 p-2">
               {artists.map((artist) => (
                 <option key={artist.id} value={artist.id}>
-                  {artist.artist_name}
+                  {artist.artist}
                 </option>
               ))}
             </select>

@@ -23,6 +23,7 @@ const getAllSongs = async () => {
 const Homepage = async () => {
   const artists = await getAllArtist();
   const songs = await getAllSongs();
+
   return (
     <>
       <h1 className="my-6 text-4xl text-secondary font-semibold">Dashboard</h1>

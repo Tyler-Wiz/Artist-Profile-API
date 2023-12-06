@@ -15,7 +15,7 @@ const sideBarList = [
     icon: <IoMdMusicalNote size={30} />,
     path: "/admin/artist",
   },
-  { name: "Albums", icon: <IoMdAlbums size={30} />, path: "" },
+  { name: "Albums", icon: <IoMdAlbums size={30} />, path: "/admin/album" },
 ];
 
 const sideBarExtras = [

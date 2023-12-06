@@ -10,6 +10,7 @@ const genAuthToken = (user) => {
       password: user.password,
       created_at: user.created_at,
       is_admin: user.is_admin,
+      username: user.username,
     },
     secretKey
   );

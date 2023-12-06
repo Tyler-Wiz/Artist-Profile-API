@@ -1,11 +1,11 @@
 const db = require("../../config/index");
 
 class UserModel {
-  static async createUser(email, password, is_admin) {
+  static async createUser(email, password, is_admin, username) {
     try {
       // SQL Statement
-      const statement = `INSERT INTO users(email, password,is_admin) VALUES($1,$2, $3) RETURNING*`;
-      const values = [email, password, is_admin];
+      const statement = `INSERT INTO users(email, password,is_admin) VALUES($1,$2, $3, $4) RETURNING*`;
+      const values = [email, password, is_admin, username];
       const result = await db.query(statement, values);
       if (result.rows?.length) {
         return result.rows[0];

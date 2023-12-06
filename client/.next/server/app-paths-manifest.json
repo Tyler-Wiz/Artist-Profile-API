@@ -1,7 +1,7 @@
 {
+  "/page": "app/page.js",
+  "/admin/artist/page": "app/admin/artist/page.js",
+  "/profile/[id]/page": "app/profile/[id]/page.js",
   "/admin/song/post-new/page": "app/admin/song/post-new/page.js",
-  "/admin/artist/post-new/page": "app/admin/artist/post-new/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/song/edit/[id]/page": "app/admin/song/edit/[id]/page.js",
-  "/admin/artist/page": "app/admin/artist/page.js"
+  "/admin/song/page": "app/admin/song/page.js"
 }

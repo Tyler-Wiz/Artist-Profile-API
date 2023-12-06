@@ -22,6 +22,7 @@ exports.validateAuthInput = async (data) => {
       }),
     password: joi.string().trim().max(40).required(),
     is_admin: joi.number().required(),
+    username: joi.string().required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
@@ -79,6 +80,7 @@ exports.validateAlbumUpdate = async (data) => {
     album_image: joi.string().required(),
     album_title: joi.string().required(),
     external_url: joi.string().required(),
+    released: joi.string().required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
@@ -91,6 +93,7 @@ exports.validateAlbumInput = async (data) => {
     album_image: joi.string().required(),
     album_title: joi.string().required(),
     external_url: joi.string().required(),
+    released: joi.string().required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
