@@ -88,6 +88,7 @@ const AuthForm = ({ dispatchAction, title }) => {
           ""
         )}
         <button
+          type="submit"
           // disabled={loginStatus}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 mt-2">
           {loginStatus === "pending"

@@ -40,7 +40,6 @@ const page = async ({ params }) => {
   const artist = await getArtist(artistId);
   const songs = await getSongsByArtist(artist.id);
   const albums = await getAlbumsByArtist(artist.id);
-  console.log(songs);
   return (
     <div>
       <RenderArtistInfo songs={songs} artist={artist} albums={albums} />
