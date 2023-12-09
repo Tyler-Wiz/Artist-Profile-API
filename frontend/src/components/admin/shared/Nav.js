@@ -54,7 +54,8 @@ const Nav = () => {
             <Link
               href={item.path}
               key={i}
-              className={`mt-4 ${toggleMenu ? "opacity-0" : "z-20"}`}>
+              className={`mt-4 ${toggleMenu ? "opacity-0" : "z-20"}`}
+              aria-label="create-new-dropdown-menu">
               {item.name}
             </Link>
           ))}

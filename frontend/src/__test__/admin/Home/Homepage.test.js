@@ -25,21 +25,21 @@ describe("Homepage", () => {
     );
   });
   describe("Render", () => {
-    test("should render dashboard heading", async () => {
+    it("should render dashboard heading", async () => {
       // Act
       const header = screen.getByLabelText("heading");
       // Assert
       expect(header).toBeInTheDocument();
     });
 
-    test("should render information tab", () => {
+    it("should render information tab", () => {
       // Act
       const infoTab = screen.getByLabelText("info-tab");
       // Assert
       expect(infoTab).toBeInTheDocument();
     });
 
-    test("should render a learn more button", () => {
+    it("should render a learn more button", () => {
       // Act
       const button = screen.getByRole("button", {
         name: "Learn More",
@@ -48,7 +48,7 @@ describe("Homepage", () => {
       expect(button).toBeInTheDocument();
     });
 
-    test("should render a table and display songs", () => {
+    it("should render a table and display songs", () => {
       // Act
       const table = screen.getByRole("table");
       // Assert
@@ -64,7 +64,7 @@ describe("Homepage", () => {
       expect(table).toBeInTheDocument();
     });
 
-    test("should render input and textarea and button", () => {
+    it("should render input and textarea and button", () => {
       // Act
       const input = screen.getByPlaceholderText("title");
       const textarea = screen.getByPlaceholderText("content");
@@ -79,7 +79,7 @@ describe("Homepage", () => {
   });
 
   describe("behavior", () => {
-    test("should be able to add input", async () => {
+    it("should be able to add input", async () => {
       // Act
       const input = screen.getByPlaceholderText("title");
       const textarea = screen.getByPlaceholderText("content");
@@ -89,7 +89,7 @@ describe("Homepage", () => {
       expect(input).toHaveValue("hello world");
       expect(textarea).toHaveValue("Let make it work");
     });
-    test("should empty the text input when submitted", async () => {
+    it("should empty the text input when submitted", async () => {
       // Act
       const input = screen.getByPlaceholderText("title");
       const textarea = screen.getByPlaceholderText("content");
