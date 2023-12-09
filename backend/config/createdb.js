@@ -33,7 +33,7 @@ const { DB } = require("./config");
         url            varchar(255) NOT NULL,
         external_url   varchar(255) NOT NULL,
         Released       varchar(255) NOT NULL,
-        created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        created_at     DATE NOT NULL DEFAULT CURRENT_DATE,
         FOREIGN KEY    (artist_id) REFERENCES artists(id) 
     );`,
     `CREATE TABLE IF NOT EXISTS albums(
@@ -42,9 +42,9 @@ const { DB } = require("./config");
         album_image   TEXT NOT NULL,
         album_title   TEXT NOT NULL,
         url           varchar(255) NOT NULL,
-        external_url   varchar(255) NOT NULL,
-        released       varchar(255) NOT NULL,
-        created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        external_url  varchar(255) NOT NULL,
+        released      varchar(255) NOT NULL,
+        created_at    DATE NOT NULL DEFAULT CURRENT_DATE,
         FOREIGN KEY (artist_id) REFERENCES artists(id) 
     );`,
     `CREATE TABLE IF NOT EXISTS session (

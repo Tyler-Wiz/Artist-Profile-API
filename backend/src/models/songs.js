@@ -101,7 +101,8 @@ class SongsModel {
   static async findMany() {
     try {
       //SQL statement
-      const statement = `SELECT s.song_title AS Title, s.song_image, s.url, s.released AS "released date", 
+      const statement = `SELECT s.song_title AS Title, s.song_image, s.url, 
+                        s.released AS "released date", 
                         a.artist_name AS Artist, s.created_at
                         FROM songs s
                         JOIN artists a ON s.artist_id = a.id `;

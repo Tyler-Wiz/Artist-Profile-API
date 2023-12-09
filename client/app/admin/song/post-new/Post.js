@@ -66,9 +66,10 @@ const Post = ({ title, artists }) => {
         router.push("/admin/song");
       }
     } catch (error) {
-      toast(error.response.data.errorMessage, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      console.log(error);
+      // toast(error.response.data.errorMessage, {
+      //   position: toast.POSITION.BOTTOM_RIGHT,
+      // });
     }
   };
 

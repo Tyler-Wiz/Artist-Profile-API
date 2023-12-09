@@ -22,11 +22,10 @@ exports.validateAuthInput = async (data) => {
       }),
     password: joi.string().trim().max(40).required(),
     is_admin: joi.number().required(),
-    username: joi.string().required(),
   });
   // Check for valid email and password
   const { error } = schema.validate(data);
-  if (error) throw CreateError(401, "Invalid Email,Password & Admin ");
+  if (error) throw trimErrorMessage(error.details[0].message).toUpperCase();
   // Trim Input
   const trimmedData = await schema.validateAsync(data);
   // Return trimmed data

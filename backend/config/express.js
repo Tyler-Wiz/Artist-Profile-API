@@ -9,7 +9,7 @@ require("../src/middleware/passportLocal");
 module.exports = (app) => {
   app.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: ["http://localhost:3000", "http://localhost:3001"],
       methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
       credentials: true,
     })

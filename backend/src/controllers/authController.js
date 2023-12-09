@@ -8,6 +8,7 @@ exports.create = async (req, res, next) => {
   try {
     // Validate the userInput
     const data = await validateAuthInput(req.body);
+    if (!data) throw CreateError(400, `Input invalid`);
     // destructure req body
     const { email, password, is_admin, username } = data;
     // Check if user already exists
