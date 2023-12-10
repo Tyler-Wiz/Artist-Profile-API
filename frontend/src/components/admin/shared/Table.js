@@ -2,9 +2,8 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import deleteById from "@/services/api/shared/deleteById";
 
 const Table = ({
   headers,
@@ -16,21 +15,8 @@ const Table = ({
   SERVER_URL,
   editLink,
 }) => {
+  // refresh page after add, edit or delete
   const router = useRouter();
-  const deleteSong = async (id) => {
-    try {
-      const res = await axios.delete(`${SERVER_URL}${id}`, {
-        withCredentials: true,
-      });
-      if (res.data) {
-        router.refresh();
-      }
-      console.log(res.data);
-    } catch (error) {
-      toast(error.response.data.errorMessage);
-    }
-  };
-
   useEffect(() => {
     router.refresh();
   }, []);
@@ -76,7 +62,9 @@ const Table = ({
                     </Link>
                   </td>
                   <td className=" text-red-700 font-bold">
-                    <button onClick={() => deleteSong(row.url)}>Trash</button>
+                    <button onClick={() => deleteById(row.url, SERVER_URL)}>
+                      Trash
+                    </button>
                   </td>
                 </>
               )}

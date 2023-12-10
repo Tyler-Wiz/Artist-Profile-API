@@ -33,21 +33,30 @@ const Sidebar = () => {
     <aside
       className={`text-text-primary text-lg w-1/5 bg-secondary shadow-lg border-r-2 border-text-primary duration-300  ${
         isSidebarCollapsed ? "w-[80px] p-6" : "w-[200px] p-6"
-      }`}>
+      }`}
+      aria-label="sidebar">
       <p>LOGO</p>
       <div className="mt-10">
         {sideBarList.map((item, i) => (
           <Link href={item.path} key={i} className="flex gap-2 my-4 ">
-            <p>{item.icon}</p>
-            {isSidebarCollapsed ? "" : <p>{item.name}</p>}
+            <p aria-label="menu-icon">{item.icon}</p>
+            {isSidebarCollapsed ? (
+              ""
+            ) : (
+              <p aria-label="menu-text">{item.name}</p>
+            )}
           </Link>
         ))}
       </div>
       <div className="my-28 border-t-2 py-4">
         {sideBarExtras.map((item, i) => (
           <Link href={item.path} key={i} className="flex gap-2 my-4">
-            <p>{item.icon}</p>
-            {isSidebarCollapsed ? "" : <p>{item.name}</p>}
+            <p aria-label="sub-menu-icon">{item.icon}</p>
+            {isSidebarCollapsed ? (
+              ""
+            ) : (
+              <p aria-label="sub-menu-text">{item.name}</p>
+            )}
           </Link>
         ))}
       </div>
