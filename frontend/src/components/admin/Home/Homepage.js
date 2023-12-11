@@ -1,10 +1,19 @@
+"use client";
+
 import React from "react";
 import AddArtist from "./AddArtist";
 import QuickInfo from "./QuickInfo";
 import LatestActivity from "./LatestActivity";
 import AdminLayout from "../shared/AdminLayout";
+import { useSelector } from "react-redux";
+import { redirect } from "next/navigation";
 
 const Homepage = ({ songs, artists }) => {
+  const { token } = useSelector((state) => state.auth);
+  if (!token) {
+    redirect("/auth/login");
+  }
+
   const infoArray = [...songs, ...artists];
   return (
     <AdminLayout>

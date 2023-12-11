@@ -47,6 +47,13 @@ const { DB } = require("./config");
         created_at    DATE NOT NULL DEFAULT CURRENT_DATE,
         FOREIGN KEY (artist_id) REFERENCES artists(id) 
     );`,
+    `CREATE TABLE IF NOT EXISTS charts (
+      entry_id        SERIAL PRIMARY KEY,
+      position        INTEGER NOT NULL,
+      chart_date      DATE NOT NULL DEFAULT CURRENT_DATE,
+      song_id         INTEGER NOT NULL,
+      FOREIGN KEY     (song_id) REFERENCES songs(id) 
+);`,
     `CREATE TABLE IF NOT EXISTS session (
         sid           VARCHAR(255) PRIMARY KEY,
         sess          JSON,

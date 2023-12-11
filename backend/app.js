@@ -5,6 +5,7 @@ const albumRouter = require("./src/routes/album");
 const Songs = require("./src/routes/songs");
 const expressConfig = require("./config/express");
 const SwaggerConfig = require("./config/swagger");
+const Chart = require("./src/routes/chart");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/api/auth", Auth);
 app.use("/api/artist", Artist);
 app.use("/api/songs", Songs);
 app.use("/api/albums", albumRouter);
+app.use("/api/charts", Chart);
 
 // Error Handler -----------
 app.use((error, req, res, next) => {

@@ -67,6 +67,7 @@ const Post = ({ title, artists }) => {
             type="text"
             onChange={handleChange}
             background="bg-white"
+            width="w-full"
           />
           <Input
             placeholder="External URL"
@@ -75,6 +76,7 @@ const Post = ({ title, artists }) => {
             value={formData.external_url}
             onChange={handleChange}
             background="bg-white"
+            width="w-full"
           />
           <Input
             placeholder="Released Date"
@@ -83,6 +85,7 @@ const Post = ({ title, artists }) => {
             value={formData.released}
             onChange={handleChange}
             background="bg-white"
+            width="w-full"
           />
           <label>
             Select Artist:

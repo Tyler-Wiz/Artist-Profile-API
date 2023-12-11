@@ -72,6 +72,7 @@ const PostArtist = ({ title }) => {
             value={formData.artist_name}
             type="text"
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="Real Name"
@@ -79,6 +80,7 @@ const PostArtist = ({ title }) => {
             name="real_name"
             value={formData.real_name}
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="YYYY-MM-DD"
@@ -86,6 +88,7 @@ const PostArtist = ({ title }) => {
             name="age"
             value={formData.age}
             onChange={handleChange}
+            width="w-full"
           />
           <TipTap setDescription={setDescription} />
         </div>
@@ -101,6 +104,7 @@ const PostArtist = ({ title }) => {
             name="hometown"
             value={formData.hometown}
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="label"
@@ -108,6 +112,7 @@ const PostArtist = ({ title }) => {
             name="label"
             value={formData.label}
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="Twitter"
@@ -115,6 +120,7 @@ const PostArtist = ({ title }) => {
             name="twitter"
             value={formData.twitter}
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="Instagram"
@@ -122,6 +128,7 @@ const PostArtist = ({ title }) => {
             name="instagram"
             value={formData.instagram}
             onChange={handleChange}
+            width="w-full"
           />
           <button className="w-full bg-primary text-text-primary px-2 py-2 rounded-md mt-4">
             Publish

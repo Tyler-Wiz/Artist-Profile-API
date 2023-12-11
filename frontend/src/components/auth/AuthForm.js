@@ -44,6 +44,8 @@ const AuthForm = ({ title, dispatchAction }) => {
               placeholder="email address"
               value={formData.email}
               onChange={handleChange}
+              background="bg-gray-100"
+              width="w-[250px]"
             />
           </label>
           <label>
@@ -53,6 +55,8 @@ const AuthForm = ({ title, dispatchAction }) => {
               placeholder="password"
               value={formData.password}
               onChange={handleChange}
+              background="bg-gray-100"
+              width="w-[250px]"
             />
           </label>
           {title === "register" && (

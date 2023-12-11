@@ -1,6 +1,14 @@
 import React from "react";
 
-const Input = ({ type, placeholder, onChange, name, value, background }) => {
+const Input = ({
+  type,
+  placeholder,
+  onChange,
+  name,
+  value,
+  background,
+  width,
+}) => {
   return (
     <input
       type={type}
@@ -9,7 +17,7 @@ const Input = ({ type, placeholder, onChange, name, value, background }) => {
       name={name}
       value={value}
       required
-      className={`${background} p-3 rounded-lg block w-full mt-2 outline-none`}
+      className={`${background} p-3 rounded-lg block ${width} mt-2 outline-none`}
     />
   );
 };

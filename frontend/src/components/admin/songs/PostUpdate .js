@@ -40,6 +40,7 @@ const PostUpdate = ({ title, song }) => {
             value={formData.song_title}
             type="text"
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="External URL"
@@ -47,6 +48,7 @@ const PostUpdate = ({ title, song }) => {
             name="external_url"
             value={formData.external_url}
             onChange={handleChange}
+            width="w-full"
           />
           <Input
             placeholder="Released Date"
@@ -54,6 +56,7 @@ const PostUpdate = ({ title, song }) => {
             name="released"
             value={formData.released}
             onChange={handleChange}
+            width="w-full"
           />
           <p className="mt-6"> Artist:{artist_name}</p>
           <div className="w-2/6 mt-6">
