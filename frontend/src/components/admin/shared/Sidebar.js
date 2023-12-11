@@ -9,13 +9,13 @@ import Link from "next/link";
 
 const sideBarList = [
   { name: "Dashboard", icon: <MdDashboard size={30} />, path: "/admin" },
-  { name: "Song", icon: <TiPin size={30} />, path: "/admin/song" },
+  { name: "Song", icon: <TiPin size={30} />, path: "/admin/songs" },
   {
     name: "Artist",
     icon: <IoMdMusicalNote size={30} />,
     path: "/admin/artist",
   },
-  { name: "Albums", icon: <IoMdAlbums size={30} />, path: "/admin/album" },
+  { name: "Albums", icon: <IoMdAlbums size={30} />, path: "/admin/albums" },
 ];
 
 const sideBarExtras = [

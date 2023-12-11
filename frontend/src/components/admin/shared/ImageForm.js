@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
 const UploadForm = ({ handleImageSubmit, image }) => {
@@ -16,7 +16,7 @@ const UploadForm = ({ handleImageSubmit, image }) => {
           <input
             type="file"
             multiple
-            name="myImage"
+            name="image"
             accept="image/png, image/gif, image/jpeg, image/webp"
             onChange={handleImageSubmit}
             placeholder="image upload"

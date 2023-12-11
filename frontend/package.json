@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "@tiptap/extension-underline": "^2.1.13",
+    "@tiptap/pm": "^2.1.13",
+    "@tiptap/react": "^2.1.13",
+    "@tiptap/starter-kit": "^2.1.13",
     "axios": "^1.6.2",
     "html-react-parser": "^5.0.7",
     "jest-fetch-mock": "^3.0.3",

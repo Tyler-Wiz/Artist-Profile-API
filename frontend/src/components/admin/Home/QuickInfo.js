@@ -9,7 +9,11 @@ import SectionHeader from "./SectionHeader";
 const QuickInfo = ({ artists, songs }) => {
   const quickInfoItems = [
     {
-      name: `${songs.length} Songs Posted`,
+      name: `${
+        songs?.length === undefined
+          ? "No Songs Posted"
+          : `${songs.length} Songs Posted`
+      } `,
       icon: <TiPin size={25} />,
       path: "",
     },

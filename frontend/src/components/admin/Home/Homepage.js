@@ -5,10 +5,11 @@ import LatestActivity from "./LatestActivity";
 import AdminLayout from "../shared/AdminLayout";
 
 const Homepage = ({ songs, artists }) => {
+  const infoArray = [...songs, ...artists];
   return (
     <AdminLayout>
       <h1
-        className="my-6 text-4xl text-secondary font-semibold"
+        className="my-3 text-4xl text-secondary font-semibold"
         aria-label="heading">
         Dashboard
       </h1>
@@ -18,7 +19,7 @@ const Homepage = ({ songs, artists }) => {
             <QuickInfo artists={artists} songs={songs} />
           </section>
           <section className="rounded-2xl shadow-md p-8 bg-white mb-10">
-            <LatestActivity songs={songs} />
+            <LatestActivity allActivities={infoArray} />
           </section>
         </div>
         <div className="w-2/4">

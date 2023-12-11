@@ -2,8 +2,9 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import deleteById from "@/services/api/shared/deleteById";
 
 const Table = ({
   headers,
@@ -15,8 +16,21 @@ const Table = ({
   SERVER_URL,
   editLink,
 }) => {
-  // refresh page after add, edit or delete
   const router = useRouter();
+  const deleteSong = async (id) => {
+    try {
+      const res = await axios.delete(`${SERVER_URL}${id}`, {
+        withCredentials: true,
+      });
+      if (res.data) {
+        router.refresh();
+      }
+      console.log(res.data);
+    } catch (error) {
+      toast(error.response.data.errorMessage);
+    }
+  };
+
   useEffect(() => {
     router.refresh();
   }, []);
@@ -47,29 +61,28 @@ const Table = ({
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 capitalize">
-          {data?.map((row, index) => (
-            <tr key={index}>
-              {headers.map((header) => (
-                <td className="p-4 whitespace-nowrap" key={header}>
-                  {row[header]}
-                </td>
-              ))}
-              {additionalHeaders && (
-                <>
-                  <td className=" text-primary font-bold p-4 whitespace-nowrap">
-                    <Link href={`${editLink}${row.url}`}>
-                      <button>Edit</button>
-                    </Link>
+          {Array.isArray(data) &&
+            data.map((row, index) => (
+              <tr key={index}>
+                {headers.map((header) => (
+                  <td className="p-4 whitespace-nowrap" key={header}>
+                    {row[header]}
                   </td>
-                  <td className=" text-red-700 font-bold">
-                    <button onClick={() => deleteById(row.url, SERVER_URL)}>
-                      Trash
-                    </button>
-                  </td>
-                </>
-              )}
-            </tr>
-          ))}
+                ))}
+                {additionalHeaders && (
+                  <>
+                    <td className=" text-primary font-bold p-4 whitespace-nowrap">
+                      <Link href={`${editLink}${row.url}`}>
+                        <button>Edit</button>
+                      </Link>
+                    </td>
+                    <td className=" text-red-700 font-bold">
+                      <button onClick={() => deleteSong(row.url)}>Trash</button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
           <tr></tr>
         </tbody>
       </table>

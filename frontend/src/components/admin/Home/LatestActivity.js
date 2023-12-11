@@ -2,9 +2,11 @@
 
 import React from "react";
 import SectionHeader from "./SectionHeader";
-import convertDate from "@/components/shared/convertDate";
+import convertDate from "@/utils/convertDate";
 
-const LatestActivity = ({ songs }) => {
+const LatestActivity = ({ allActivities }) => {
+  let activities = allActivities?.slice(0, 4);
+
   return (
     <>
       <SectionHeader
@@ -21,10 +23,12 @@ const LatestActivity = ({ songs }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {songs.map((item, i) => (
+          {activities?.map((item, i) => (
             <tr key={i}>
               <td className="py-2 whitespace-nowrap">{i + 1}</td>
-              <td className="py-2 whitespace-nowrap">{item.title}</td>
+              <td className="py-2 whitespace-nowrap">
+                {item.title ? item.title : item.label}
+              </td>
               <td className="p-4 whitespace-nowrap">
                 {convertDate(item.created_at)}
               </td>
