@@ -28,11 +28,11 @@ app.use("/api/albums", albumRouter);
 app.use("/api/charts", Chart);
 
 // Error Handler -----------
-app.use((error, req, res, next) => {
-  res.status(error.status).json({
-    errorMessage: error.message,
-    status: error.status,
-  });
-});
+// app.use((error, req, res, next) => {
+//   res.status(error.status).json({
+//     errorMessage: error.message,
+//     status: error.status,
+//   });
+// });
 
 module.exports = app;

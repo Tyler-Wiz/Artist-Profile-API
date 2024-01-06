@@ -33,12 +33,13 @@ exports.create = async (req, res, next) => {
 
 exports.searchSong = async (req, res, next) => {
   const search = req.query.song;
+  console.log(search);
   try {
     const allSongs = await SongsModel.findMany();
     if (search) {
       if (allSongs === null) throw CreateError(404, "Song not found");
       const filteredSongs = allSongs.filter((song) =>
-        song.song_title.toLowerCase().includes(search.toLowerCase())
+        song.title?.toLowerCase().includes(search.toLowerCase())
       );
       if (filteredSongs.length === 0) throw CreateError(404, "Song not found");
       res.status(200).send(filteredSongs);
